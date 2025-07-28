@@ -16,18 +16,19 @@
     <h3>Your Input:</h3>
 <blockquote>{{user_text}}</blockquote>
 
-{% if suggestion %}
-<div class="suggestion">
-    <!--Display suggestion for neutral text -->
-   {{suggestion}}
-</div>
-{% endif %}
+
 
 
   
 <!--Display detected emotions and the pie chart -->
 <h3>Detected Emotions:</h3>
 <img src="{{ url_for('static' , filename=chart_filename) }}" alt="Emotion Chart">
+
+{% if insight %}   
+<div class="insight-box">
+   <p><strong>Insight:</strong>{{ insight }}</p>
+</div>
+{% endif %}
 
 <!--Link which return the user back to the homepage for new analysis process-->
 <br><br>

@@ -23,10 +23,10 @@ def generate_pie_chart(emotions, output_dir='static'):
     
     plt.figure(figsize= (6,6)) # Set the figure size
     plt.pie(filtered_emotions.values(), labels=filtered_emotions.keys(), autopct= '%1.1f%%', startangle= 140) # Create a pie chart with the emotions data
-    plt.title= 'Emotions Distribution'
-    plt.axis= "equal"  # Equal aspect ratio ensures that pie chart is a circle
+    plt.title ('Emotions Distribution')
+    plt.axis ('equal')  # Equal aspect ratio ensures that pie chart is a circle
     plt.tight_layout()  # Adjust layout to prevent clipping of pie chart
-    plt.savefig(chart_path)  # Save the chart to the specified path
+    plt.savefig(chart_path, transparent = True, bbox_inches = 'tight')  # Save the chart to the specified path
     plt.close()  # Close the plot to free up memory
     
     return chart_path  # Return the path to the saved chart image

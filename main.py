@@ -4,6 +4,7 @@ from charts import generate_pie_chart
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from transformers import TextClassificationPipeline 
 import os
+from insights import generate_insight  # Import the generate_insight function
 
 # This is the main Flask application file.
 app = Flask(__name__)
@@ -22,6 +23,7 @@ def home():
 
 @app.route('/analyze', methods=[ 'POST' ])
 def analyze():
+    """Analyze the user input text for emotions and generate a pie chart."""
     user_text = request.form.get('user_text')
 
     results = analyzer(user_text)  # Analyze the user text
@@ -39,8 +41,10 @@ def analyze():
 
     chart_path = generate_pie_chart(emotions)
     chart_filename= os.path.basename(chart_path)  # Get the filename from the full path
+    
+    insight = generate_insight(emotions)  # Generate insight based on emotions
 
-    return render_template('results.html', user_text=user_text, chart_filename= chart_filename)
+    return render_template('results.html', user_text = user_text, chart_filename = chart_filename, insight = insight)
 
 
 if __name__== '__main__':
